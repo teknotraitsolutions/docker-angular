@@ -1,0 +1,63 @@
+<!-- container fluid -->
+<div class="container-fluid">
+    <div class="row no-gutter">
+        <!-- <div class="col-md-6 d-md-flex bg-image"></div> -->
+
+
+
+        <div class="col-md-12 bg-image1">
+            <div class="login d-flex align-items-center py-5">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-10 col-xl-7 mx-auto forms form-group">
+
+                            <!-- heading -->
+                            <label class="display-4 title">Sign in</label>
+
+                            <!-- alert message -->
+                            <div *ngIf="error" class="alert alert-danger" role="alert">{{errors}}</div>
+
+                            <!-- form  -->
+                            <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+                                <div class="form-group mb-3">
+
+                                    <!-- email field -->
+                                    <label for="email" class="email text-uppercase">email address <span class=red>*</span></label>
+                                    <input id="email" name="email" type="email" class="form-control border-1 shadow-sm px-4" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" placeholder="Enter email address">
+                                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                        <div *ngIf="f.email.errors.required">Email is required</div>
+                                        <div *ngIf="f.email.errors.pattern">Email must be a valid email address</div>
+                                    </div>
+                                </div>
+
+                                <!-- password field -->
+                                <div class="form-group mb-5">
+                                    <label for="password" class="pass text-uppercase">password <span class=red>*</span></label>
+                                    <div class="input-group">
+                                        <input class="form-control border-1 shadow-sm px-4" placeholder="Enter password" name="password" id="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" [type]="fieldTextType ? 'text' : 'password'">
+                                        <span class="input-group-text">
+                                                <i class="fa" [ngClass]="{ 'fa-eye-slash': !fieldTextType, 'fa-eye': fieldTextType }" (click)="toggleFieldTextType()"></i>
+                                            </span>
+                                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                            <div *ngIf="f.password.errors.required">Password is required</div>
+                                            <div *ngIf="f.password.errors.minlength">Please enter minimum eight charactes, atleast one uppercase letter, one lowercase letter, one number and one special character</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- submit button -->
+                                <div class="form-group mb-3">
+                                    <button type="submit" class="btn btn-block text-uppercase mb-2 btn11 btn-lg">login</button>
+                                </div>
+                            </form>
+
+                            <!-- end of form -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
